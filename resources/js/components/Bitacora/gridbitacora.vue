@@ -1,0 +1,217 @@
+<template>
+<v-app id="inspire">
+  <v-form >
+    <v-container>
+         <v-form ref="form" lazy-validation>     
+          <v-card>
+          <v-card-title>              
+                  <div class='flotar'>
+                    <div style='float: left;'>
+                        <v-text-field v-model="search" label="Buscar" single-line hide-details></v-text-field>  
+                    </div>
+                    <div style='float: right;'>   
+                          <v-btn color="yellow darken-2" @click="regresar()" >Regresar</v-btn>                                     
+                  </div>               
+                </div>
+            </v-card-title>
+            <v-data-table :headers="headers" :items="items" :search="search">
+               <template v-slot:item="row">
+                <tr>
+                  <td>{{row.item.id}}</td>
+                  <td>{{row.item.expediente}}</td>
+                  <td>{{row.item.estado}}</td>
+                  <td>{{row.item.comentario}}</td>                                    
+                  <td>{{row.item.created_at}}</td>                  
+                  <!--td>
+                    <v-btn v-if="row.item.evento_id == 7" color="success" @click="mostrarModal(row.item.expediente)" dark>CargarDatos</v-btn>                    
+                  </td-->
+                </tr>
+            </template>
+            </v-data-table>
+          </v-card>        
+    </v-form>
+    </v-container>
+  </v-form>
+
+
+
+  <!---INICIO MODAL-->
+
+  <div v-if="mModel">
+      <transition name="model">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+        <div class="modal-dialog">
+          <div class="modal-content">        
+          <div class="modal-body">
+          <br>
+              <!--div class="modal-header">
+             
+                    <h4 class="modal-title">{{ dynamicTitle }}</h4>
+              </div-->
+              <div class="modal-body">
+                       <button type="button" class="close" @click="mModel=false"><span aria-hidden="true">&times;</span></button>
+                  <div class="form-group">                    
+                  <iframe :src="archivoPDF" style="width:90%; height:400px;" frameborder="0"></iframe>
+                  </div>
+              </div>                                           
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </transition>
+    </div>
+
+
+  <!---FIN MODAL-->    
+
+
+</v-app>
+</template>
+<script>
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+
+
+export default {
+    vuetify: new Vuetify(),    
+    data () {
+      return {
+        search: '',
+        headers: [          
+          { text: 'Codigo', value: 'id' },
+          { text: 'Expediente', value: 'expediente' },
+          { text: 'Estatus', value: 'estado' },
+          { text: 'Observación', value: 'comentario' },        
+          { text: 'Fecha Hora', value: 'created_at' },                    
+          //{ text: 'Acción', value: '' },
+        ],
+        params:[],
+        fields: [],  
+        archivoPDF:'', 
+        getexpediente:'', 
+        mModel:false, 
+        fields:[
+          {
+            expediente:''
+          },
+        ],     
+        items: [
+          {
+            id:'',
+            expediente: ' ',
+            comentario: ' ',
+            created_at:null,            
+          },        
+        ],
+      }
+    },
+    created: function() {
+        var parametros = [];
+        console.log(' Recuperando parametros ')
+        const params = new URLSearchParams(window.location.search)
+        params.forEach(function(data,indice,array){            
+            var feed = {codigo: data, nombre: indice}                
+            parametros.push(feed);                  
+        }); 
+        this.params = parametros;
+        console.log(this.params);
+        this.getexpediente = this.params[0].codigo;
+      this.fetchAllData();
+    },
+     methods: {  
+        regresar:function(){
+          history.back();
+        },          
+        fetchData: function(archivo) {                  
+            this.mModel = true;
+            this.archivoPDF ='/upload/'+archivo;                        
+        },    
+        operar: function(data){
+          //console.log('operar ' + data);
+          alert('En esta sección el analista tendra una ventana de dialogo para el seguimiento de los expedientes');
+        },       
+        empresa: function(event){                     
+          window.location.href = "/empresa/webservice?type="+1;
+          //this.$router.push({name:'home', params: {id: '[paramdata]'}});
+        },
+        redirect: function(id){                     
+          //alert('Valor seleccionado ' + id);
+          window.location.href = "/empresa/form_solicitud?IdEmpresa="+id;
+          //this.$router.push({name:'home', params: {id: '[paramdata]'}});
+        },
+        greet: function (event) {        
+          //alert('Hello ' + this.name + '!')        
+          if (event) {
+            alert(event.target.tagName)
+          }
+        },
+        fetchAllData: function() {  
+           const config = {
+                        headers: { 'content-type': 'multipart/form-data' }
+                    } 
+          let formData = new FormData();
+          formData.append('expediente', this.getexpediente);                     
+          axios.post('/registro/obtenerBitacora',formData,config).then((response) => {                          
+            this.items = response.data;            
+            //JSON.stringify(obj, null, 2);
+          });
+        },
+      }
+  }
+</script>
+
+
+<style>
+  .flotar {
+  width:100%;
+  display:inline-block;
+  /*overflow: auto;*/
+  white-space: nowrap;
+  margin:5px auto;
+  border:1px rgb(255, 255, 255) solid;
+}
+  
+  
+    .modal-mask {
+      position: fixed;
+      z-index: 9998;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .5);
+      display: table;
+      transition: opacity .3s ease;
+    }   
+    .my-custom-class .modal-wrapper {    
+        height: 90%;
+        position: absolute; 
+        top: 5%;
+        width: 90%;
+        border-radius: 25px;
+        display: block;
+    }
+
+
+    .modal-body{
+      width: 800px;
+    }
+
+    .modal-dialog{
+        width: 850px;
+    }
+
+    .modal-content{
+      width: 850px;
+    }
+
+    .pdf-modal-body {
+      /* overflow-x: scroll;*/
+      overflow-y: scroll;
+      height: 400px;
+      scroll-behavior: smooth;
+    }
+
+  </style>

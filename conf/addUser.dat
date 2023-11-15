@@ -1,0 +1,110 @@
+chmod 757 -R nginx /var/www/sistema/masterfile/public
+chgrp -R nginx /var/www/sistema
+chown -R nginx /var/www/sistema
+
+
+php artisan migrate --path=database/migrations/2023_09_12_193800_libro.php
+
+
+dnf install certbot 
+certbot certonly 
+
+mysql -u root -pdLl761z4$ masterfile < /var/www/sistema/masterfile/database/nacionalidads.sql
+
+last -i -s $(date +%F -d "7 days ago")
+sudo who
+docker system prune -a
+sudo netstat -tlnp
+
+git pull origin master --rebase
+git push origin master --force
+
+
+git commit -a --no-verify 
+git push origin master --force
+
+composer dump-autoload
+
+systemctl status httpd
+
+timedatectl set-timezone America/Guatemala
+firewall-cmd --zone=public --add-service=https --permanent
+
+
+timedatectl set-timezone UTC
+timedatectl set-timezone America/Costa_Rica
+
+systemctl restart systemd-timedated.service
+
+
+
+import socket
+
+HOST = ''  # Escucha en todas las interfaces de red
+PORT = 443  # Puerto de escucha
+
+# Crear el socket
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    # Asociar el socket al puerto y empezar a escuchar
+    s.bind((HOST, PORT))
+    s.listen()
+    print(f"Escuchando en el puerto {PORT}...")
+
+    # Aceptar conexiones entrantes
+    conn, addr = s.accept()
+    with conn:
+        print(f"Conexión entrante desde {addr}")
+
+        # Recibir y mostrar los datos recibidos
+        data = conn.recv(1024)
+        while data:
+            print(data.decode('utf-8'))
+            data = conn.recv(1024)
+
+
+
+
+or even better (recursive):
+
+find /var/www/example.com -type d -print0 | xargs -0 chmod 755
+As for nginx user, you can set it with user configuration directive:
+
+user www-data;
+You can use any user with NGINX server, you just need correct permissions for folders (755) and files (644) of your project. I prefer distinct user nginx, it is good practice, but not necessary.
+
+You can create system nginx user in Ubuntu/Debian like this:
+
+sudo adduser --system --no-create-home --disabled-login --disabled-password --group nginx
+
+
+
+
+@echo off
+
+setlocal enabledelayedexpansion
+
+set "nssm_path=c:\nssm-2.24\nssm-2.24\win64\nssm.exe"
+set "app_name=GWStatus"
+
+for %%i in (50007 50090 50127 50130 50137 50138 50139 50140 50141 50142 50143 50144 50145 50146 50147 50150 50009 50010 50016 50017 50022 50027 50136 50154 50155 50158) do (
+
+  set "app_parameters=jled%%i 1 6 60000"
+  
+  echo Installing %%i ...
+  start "%app_name%%%i" "%nssm_path%" install "%app_name%%%i" "C:\BAT\JNET1_R1\GWStatus\GWstatus.exe"
+  timeout /t 2 /nobreak > nul
+  
+  echo Setting AppParameters for %%i ...
+  start "%app_name%%%i" "%nssm_path%" set "%app_name%%%i" AppParameters !app_parameters!
+  timeout /t 2 /nobreak > nul
+  
+  echo.
+)
+
+
+
+backups******************************
+
+crontab -e
+0 15 * * * /ruta/al/script.sh
+

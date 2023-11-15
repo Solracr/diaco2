@@ -1,0 +1,46 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "axios": "^0.21.4",
+        "bootstrap": "^4.6.2",
+        "browser-sync": "^2.29.3",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "deepmerge": "^4.3.0",
+        "jquery": "^3.6.3",
+        "laravel-mix": "^6.0.49",
+        "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
+        "postcss": "^8.4.31",
+        "resolve-url-loader": "^3.1.5",
+        "sass": "^1.58.3",
+        "sass-loader": "^11.1.1",
+        "vue": "^2.7.14",
+        "vue-loader": "^15.10.1",
+        "vue-template-compiler": "^2.7.14"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "chart.js": "^2.9.4",
+        "icheck-bootstrap": "^3.0.1",
+        "overlayscrollbars": "^1.13.3",
+        "v-toaster": "^1.0.3",
+        "vue-chartjs": "^3.5.1",
+        "vue-excel-xlsx": "^1.2.2",
+        "vue-material-date-time-picker": "^0.6.0",
+        "vue-multiselect": "^2.1.7",
+        "vue-search-select": "^2.9.6",
+        "vuejs-datepicker-module": "^2.0.1",
+        "vuetify": "^2.6.14",
+        "vuetify-loader": "^1.9.2",
+        "xlsx": "^0.18.5"
+    }
+}

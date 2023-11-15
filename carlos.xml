@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<SettingsData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <IsJnet1ProxyMechanismEnabled>true</IsJnet1ProxyMechanismEnabled>
+    <jSC_ProxyList>
+        <JSC_ProxyInfo>
+            <ProxyType>JNet1_28Bytes</ProxyType>
+            <ProxyComm>TCPIP</ProxyComm>
+            <FriendlyName>Default</FriendlyName>
+            <IsEnabled>true</IsEnabled>
+            <SiteName>Unknown</SiteName>
+            <Mqtt_IpAddress>localhost</Mqtt_IpAddress>
+            <Mqtt_Port>20000</Mqtt_Port>
+            <MqttClient_Enabled>true</MqttClient_Enabled>
+            <App_ServerIp>localhost</App_ServerIp>
+            <_GatewayID>5100.1489</_GatewayID>
+            <App_ServerPort>49997</App_ServerPort>
+            <GwcLocalAccess>
+                <GwcFriendlyName>Default</GwcFriendlyName>
+                <_jCommType>Jnet1_Gwc_Tcp_Listener</_jCommType>
+                <NetworkType>JNet_1</NetworkType>
+                <_GW_ID />
+                <_GWC_ListenerPort>-1</_GWC_ListenerPort>
+                <_GWC_CommStatus>Disabled</_GWC_CommStatus>
+            </GwcLocalAccess>
+            <GwcAccessList />
+            <Proxy_DataFilters />
+            <KeepAlive_HosueKeeping_ms>6000</KeepAlive_HosueKeeping_ms>
+            <KeepAliveRx_ms>65000</KeepAliveRx_ms>
+            <KeepAliveTx_ms>12000</KeepAliveTx_ms>
+            <Monitor_ChildFormEnabled>true</Monitor_ChildFormEnabled>
+            <Monitor_PrintEnabled>true</Monitor_PrintEnabled>
+            <Monitor_IsVisible>true</Monitor_IsVisible>
+            <LoggerFile_Jnet1GwcProxy_Enabled>true</LoggerFile_Jnet1GwcProxy_Enabled>
+            <MonitorListView_nMaxAllowdNumOfLines>2500</MonitorListView_nMaxAllowdNumOfLines>
+            <MonitorListView_nNumOfLinesToRemove>500</MonitorListView_nNumOfLinesToRemove>
+            <ChildForm_Broderless_Enabled>true</ChildForm_Broderless_Enabled>
+            <ChildForm_Borderless_Height>23</ChildForm_Borderless_Height>
+            <ChildForm_Borderless_FontSize>9.8</ChildForm_Borderless_FontSize>
+            <ChildForm_Borderless_BackColor>FFD3D3D3</ChildForm_Borderless_BackColor>
+            <ChildForm_Borderless_ForeColor>FFFFFFFF</ChildForm_Borderless_ForeColor>
+            <IsNmsFramework_Enabled>false</IsNmsFramework_Enabled>
+            <UseSite_NameCode>true</UseSite_NameCode>
+            <UseSite_Mqtt_Ip_Port>true</UseSite_Mqtt_Ip_Port>
+            <UseSite_KeepAlive_Settings>true</UseSite_KeepAlive_Settings>
+        </JSC_ProxyInfo>
+    </jSC_ProxyList>
+</SettingsData>
